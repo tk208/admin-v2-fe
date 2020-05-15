@@ -8,13 +8,22 @@ import './theme.css';
 export default class Layout extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            isHide : false
+        };
+        this.clickHideButton = this.clickHideButton.bind(this);
+    }
+    clickHideButton(){
+        this.setState({
+            isHide : !this.state.isHide
+        })
     }
     render() {
         return (
             <React.Fragment>
-                <SideNav/>
+                <SideNav isHide={this.state.isHide}/>
                 <div className="c-wrapper">
-                <TopNav/>
+                <TopNav clickHideButton={this.clickHideButton}/>
                 {this.props.children}
                 </div>
              

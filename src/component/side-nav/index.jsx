@@ -31,7 +31,7 @@ export default class SideNav extends Component {
     }
     render() {
         return (
-            <div className="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show c-sidebar-show" id="sidebar">    
+            <div className={ this.props.isHide ? "c-sidebar c-sidebar-dark c-sidebar-fixed" : "c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show c-sidebar-show"} id="sidebar">    
             <div className="c-sidebar-brand d-md-down-none">
                 <Link to="/"><b style={{fontSize:'2rem',color:'#181924'}}>HAPPY MMALL</b></Link>
             </div>

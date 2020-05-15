@@ -1399,6 +1399,11 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.1:
+  version "2.2.6"
+  resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
+
 clean-css@4.2.x:
   version "4.2.3"
   resolved "https://registry.npm.taobao.org/clean-css/download/clean-css-4.2.3.tgz#507b5de7d97b48ee53d84adb0160ff6216380f78"
@@ -5043,6 +5048,13 @@ raw-body@2.4.0:
     http-errors "1.7.2"
     iconv-lite "0.4.24"
     unpipe "1.0.0"
+
+rc-pagination@2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npm.taobao.org/rc-pagination/download/rc-pagination-2.2.1.tgz#e4325a7177ad547cd2ae2d3c15020f723b5527ed"
+  integrity sha1-5DJacXetVHzSri08FQIPcjtVJ+0=
+  dependencies:
+    classnames "^2.2.1"
 
 react-dom@16.2.0:
   version "16.2.0"

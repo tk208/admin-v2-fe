@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import MUtil from 'util/mm.jsx';
+import User from 'service/user-service.jsx';
+
+const _mm = new MUtil();
+const _user = new User();
 
 export default class TopNav extends Component {
     constructor(props){
         super(props);
         this.state = {
-            isOpen : false
+            isOpen : false,
+            username : _mm.getStorage('userInfo').username || ''
         };
         this.dropdown = this.dropdown.bind(this);
+        this.hideSide = this.hideSide.bind(this);
+        this.onLogout = this.onLogout.bind(this);
     }
     // 点击出现下拉菜单
     dropdown(){
@@ -15,14 +23,23 @@ export default class TopNav extends Component {
             isOpen : !this.state.isOpen
         })
     }
+    // 点击隐藏左侧导航
+    hideSide(){
+        this.props.clickHideButton()
+    }
     // 退出登录
     onLogout(){
-
+        _user.logout().then((res)=>{
+            _mm.removeStorage('userInfo');
+            window.location.href = '/login';
+        },(errMsg)=>{
+            _mm.errorTips(errMsg);
+        })
     }
     render() {
         return (
             <header className="c-header c-header-light c-header-fixed">
-                <button className="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
+                <button className="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" onClick={this.hideSide}
                     data-class="c-sidebar-lg-show" responsive="true">
                     <i className="fa fa-bars fa-1x" aria-hidden="true"></i>
                 </button>
@@ -67,7 +84,7 @@ export default class TopNav extends Component {
                                     <i className="fa fa-user-o mx-1" aria-hidden="true"></i>
                                     <i className="fa fa-caret-down mx-1" aria-hidden="true"></i>                        
                                 </div>
-                                <b className="c-header-nav-link">Admin</b>
+                                <b className="c-header-nav-link">{this.state.username}</b>
                         </span>
                         <div className={this.state.isOpen? 'dropdown-menu dropdown-menu-right pt-0 show' : 'dropdown-menu dropdown-menu-right pt-0'}>
 
@@ -78,20 +95,11 @@ export default class TopNav extends Component {
                             <span className="dropdown-item" style={{fontSize:'1.5rem'}}>
                             <i className="fa fa-cog mx-5" aria-hidden="true"></i>Settings</span>
 
-                            <span className="dropdown-item" style={{fontSize:'1.5rem'}} onClick={()=>{this.onLogout()}}>
+                            <span className="dropdown-item" style={{fontSize:'1.5rem'}} onClick={this.onLogout}>
                             <i className="fa fa-sign-out mx-5" aria-hidden="true"></i>退出登录</span>
                         </div>
                     </li>
                 </ul>
-                <div className="c-subheader justify-content-between px-3">
-        
-                    <ol className="breadcrumb border-0 m-0 px-0 px-md-3">
-                        <li className="breadcrumb-item">Home</li>
-                        <li className="breadcrumb-item"><a href="#">Admin</a></li>
-                        <li className="breadcrumb-item active">Dashboard</li>
-        
-                    </ol>
-                </div>
             </header>
         )
     }
