@@ -145,7 +145,12 @@ export default class ProductSave extends Component {
                                 <div className="row">
                                     <div className="col-lg-12">
                                         <div className="card">
-                                        <div className="card-header">添加商品</div>
+                                        <div className="card-header">
+                                        {
+                                            this.state.id ? '编辑商品' : '添加商品'
+                                        }
+                                      
+                                        </div>
                                             <div className="card-body">
                                                 <div>
                                                     <div className="form-group">

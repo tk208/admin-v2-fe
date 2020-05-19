@@ -96,4 +96,20 @@ export default class Product {
             data : product
         })
     }
+    // 新增品类
+    saveCategory(category){
+        return _mm.request({
+            type : 'post',
+            url : '/manage/category/add_category.do',
+            data : category
+        })
+    }
+
+    updateCategoryName(category){
+        return _mm.request({
+            type : 'post',
+            url : '/manage/category/set_category_name.do',
+            data : category
+        })
+    }
 }
